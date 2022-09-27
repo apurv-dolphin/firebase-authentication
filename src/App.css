@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.HomePage {
+  margin-top: 18rem;
+  margin-left: 16rem;
+  width: 50%;
+  border: 1px solid gray;
+  padding: 30px;
+}

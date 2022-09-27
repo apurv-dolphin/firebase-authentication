@@ -1,0 +1,19 @@
+.main-form {
+  display: flex;
+  justify-content: center;
+  margin-top: 7rem;
+}
+
+.inner-form {
+  width: 60%;
+  border: 1px solid gray;
+  padding: 30px;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI3dJDJBk58LGWdkdeYqNwraZgUx2uebvBWw&usqp=CAU");
+  box-shadow: 0px 3px 34px 10px #b8eeff;
+}
+
+.g-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+}
