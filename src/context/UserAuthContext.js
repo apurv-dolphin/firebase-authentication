@@ -6,10 +6,13 @@ import {
   signOut,
   GoogleAuthProvider,
   signInWithPopup,
+  sendPasswordResetEmail,
+  FacebookAuthProvider,
 } from "firebase/auth";
-import { auth } from "../Firebase";
 
 
+
+import { auth} from "../Firebase";
 const userAuthContext = createContext();
 
 export function UserAuthContextProvider({ children }) {
@@ -19,7 +22,7 @@ export function UserAuthContextProvider({ children }) {
     return signInWithEmailAndPassword(auth, email, password);
   }
   function signUp(email, password) {
-    return createUserWithEmailAndPassword(auth,email, password);
+    return createUserWithEmailAndPassword(auth, email, password);
   }
   function logOut() {
     return signOut(auth);
@@ -28,7 +31,13 @@ export function UserAuthContextProvider({ children }) {
     const googleAuthProvider = new GoogleAuthProvider();
     return signInWithPopup(auth, googleAuthProvider);
   }
-
+  function resetPassword(email) {
+    return sendPasswordResetEmail(auth, email);
+  }
+  function facebookSignIn() {
+    const facebookAuthProvider = new FacebookAuthProvider();
+    return signInWithPopup(auth, facebookAuthProvider);
+  }
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
       console.log("Auth", currentuser);
@@ -42,7 +51,15 @@ export function UserAuthContextProvider({ children }) {
 
   return (
     <userAuthContext.Provider
-      value={{ user, logIn, signUp, logOut, googleSignIn }}
+      value={{
+        user,
+        logIn,
+        signUp,
+        logOut,
+        googleSignIn,
+        resetPassword,
+        facebookSignIn,
+      }}
     >
       {children}
     </userAuthContext.Provider>

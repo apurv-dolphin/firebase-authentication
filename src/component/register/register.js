@@ -8,6 +8,9 @@ import {
   FormLabel,
   Heading,
   Input,
+  InputGroup,
+  InputLeftAddon,
+  InputRightElement,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -20,9 +23,10 @@ export default function Register() {
   const [contactno, setContactno] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [show, setShow] = React.useState(false);
+  const handleClick = () => setShow(!show);
 
-
-  console.log("__demo" ,firstname, lastname, contactno);
+  console.log("__demo", firstname, lastname, contactno);
 
   const { signUp } = useUserAuth();
   const navigate = useNavigate();
@@ -31,7 +35,7 @@ export default function Register() {
     e.preventDefault();
     setError("");
     try {
-      await signUp( email, password);
+      await signUp(email, password);
       navigate("/login");
     } catch (err) {
       setError(err.message);
@@ -71,12 +75,15 @@ export default function Register() {
           </Box>
           <Box mb={2}>
             <FormLabel>Contact No.</FormLabel>
-            <Input
-              type="number"
-              placeholder="Enter your number..."
-              outline={"1px solid gray"}
-              onChange={(e) => setContactno(e.target.value)}
-            />
+            <InputGroup>
+              <InputLeftAddon children="+91" bg={"#959595"} />
+              <Input
+                type="tel"
+                placeholder="Enter your number..."
+                outline={"1px solid gray"}
+                onChange={(e) => setContactno(e.target.value)}
+              />
+            </InputGroup>
           </Box>
           <Box mb={2}>
             <FormLabel>Email address</FormLabel>
@@ -89,18 +96,36 @@ export default function Register() {
           </Box>
           <Box mb={2}>
             <FormLabel>Password</FormLabel>
-            <Input
-              type="password"
-              placeholder="Enter password..."
-              outline={"1px solid gray"}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <InputGroup size="md">
+              <Input
+                pr="4.5rem"
+                type={show ? "text" : "password"}
+                placeholder="Enter password..."
+                outline={"1px solid gray"}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <InputRightElement width="4.5rem">
+                <Button h="1.75rem" size="sm" onClick={handleClick}>
+                  {show ? "Hide" : "Show"}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
           </Box>
 
-          <Button colorScheme="teal" variant="solid" mt={5} onClick={handleSubmit}>
+          <Button
+            colorScheme="teal"
+            variant="solid"
+            mt={5}
+            onClick={handleSubmit}
+          >
             Submit
           </Button>
-          <Box>Already have an account  <Link to="/login" style={{color: "blue"}}>login here !</Link></Box>
+          <Box>
+            Already have an account{" "}
+            <Link to="/login" style={{ color: "blue" }}>
+              login here !
+            </Link>
+          </Box>
         </FormControl>
       </div>
     </div>

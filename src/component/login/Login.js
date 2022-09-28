@@ -7,7 +7,7 @@ import {
   FormControl,
   FormLabel,
   Heading,
-  Input
+  Input,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import GoogleButton from "react-google-button";
@@ -19,7 +19,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { logIn, googleSignIn } = useUserAuth();
+  const { logIn, googleSignIn, facebookSignIn } = useUserAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -37,6 +37,16 @@ export default function Login() {
     e.preventDefault();
     try {
       await googleSignIn();
+      navigate("/");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const handleFacebookSignIn = async (e) => {
+    e.preventDefault();
+    try {
+      await facebookSignIn();
       navigate("/");
     } catch (error) {
       console.log(error.message);
@@ -74,15 +84,39 @@ export default function Login() {
             />
           </Box>
 
-          <Button colorScheme="teal" variant="solid" mt={5} onClick={ handleSubmit }>
-            Submit
-          </Button>
-           <Box>Don't have an account  <Link to="/register" style={{color: "blue"}}>Click here !</Link></Box>
+          <Box>
+            <Button
+              colorScheme="teal"
+              variant="solid"
+              mt={5}
+              onClick={handleSubmit}
+            >
+              Submit
+            </Button>
+            <Button
+              colorScheme="teal"
+              variant="solid"
+              mt={5}
+              ml={2}
+              onClick={handleFacebookSignIn}
+            >
+              Facebook
+            </Button>
+          </Box>
+          <Box>
+            <Link to="/forgot-password" style={{ color: "blue" }}>
+              Forgot Password ?
+            </Link>
+          </Box>
+
+          <Box>
+            Don't have an account{" "}
+            <Link to="/register" style={{ color: "blue" }}>
+              Click here !
+            </Link>
+          </Box>
           <Box className="g-btn">
-          <GoogleButton
-            type="dark"
-            onClick={handleGoogleSignIn}
-          />
+            <GoogleButton type="dark" onClick={handleGoogleSignIn} />
           </Box>
         </FormControl>
       </div>

@@ -1,12 +1,11 @@
-import { Button, Heading } from '@chakra-ui/react';
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
-import { useUserAuth } from '../../context/UserAuthContext';
+import { Button, Heading } from "@chakra-ui/react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useUserAuth } from "../../context/UserAuthContext";
 
 
 export default function Home() {
-
-  const {user , logOut } = useUserAuth();
+  const { user, logOut } = useUserAuth();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -18,11 +17,19 @@ export default function Home() {
     }
   };
 
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [ navigate, user]);
+
   return (
-    <div className='HomePage'>
+    <div className="HomePage">
       <Heading>Hello welcome</Heading>
       <h2>{user && user.email}</h2>
-      <Button mt={3} colorScheme='blue' onClick={handleLogout}>LogOut</Button>
+      <Button mt={3} colorScheme="blue" onClick={handleLogout}>
+        LogOut
+      </Button>
     </div>
-  )
+  );
 }
