@@ -38,9 +38,7 @@
 }
 
 .HomePage {
-  margin-top: 18rem;
-  margin-left: 16rem;
-  width: 50%;
+  margin: 100px;
   border: 1px solid gray;
   padding: 30px;
 }
