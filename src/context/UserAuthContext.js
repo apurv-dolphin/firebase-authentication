@@ -40,7 +40,7 @@ export function UserAuthContextProvider({ children }) {
   }
   function resetPassword(email) {
     return sendPasswordResetEmail(auth, email);
-  }
+  } 
   function facebookSignIn() {
     const facebookAuthProvider = new FacebookAuthProvider();
     return signInWithPopup(auth, facebookAuthProvider);
@@ -66,13 +66,11 @@ export function UserAuthContextProvider({ children }) {
   };
   const deleteUser = async (id) => {
     const userDoc = doc(db, "Apurv-project", id);
-    console.log("__userDoc", userDoc);
     await deleteDoc(userDoc);
   };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
-      console.log("Auth", currentuser);
       setUser(currentuser);
     });
 

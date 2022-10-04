@@ -59,6 +59,7 @@ export default function Register() {
             <FormLabel>First Name</FormLabel>
             <Input
               type="text"
+              id="firstname"
               placeholder="Enter first name..."
               outline={"1px solid gray"}
               onChange={(e) => setFirstName(e.target.value)}
@@ -68,6 +69,7 @@ export default function Register() {
             <FormLabel>Last Name</FormLabel>
             <Input
               type="text"
+              id="lastname"
               placeholder="Enter last name..."
               outline={"1px solid gray"}
               onChange={(e) => setLastName(e.target.value)}
@@ -79,6 +81,7 @@ export default function Register() {
               <InputLeftAddon children="+91" bg={"#959595"} />
               <Input
                 type="tel"
+                id="contactno"
                 placeholder="Enter your number..."
                 outline={"1px solid gray"}
                 onChange={(e) => setContactno(e.target.value)}
@@ -89,6 +92,7 @@ export default function Register() {
             <FormLabel>Email address</FormLabel>
             <Input
               type="email"
+              id="email"
               placeholder="Enter email..."
               outline={"1px solid gray"}
               onChange={(e) => setEmail(e.target.value)}
@@ -100,6 +104,7 @@ export default function Register() {
               <Input
                 pr="4.5rem"
                 type={show ? "text" : "password"}
+                id="password"
                 placeholder="Enter password..."
                 outline={"1px solid gray"}
                 onChange={(e) => setPassword(e.target.value)}

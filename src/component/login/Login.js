@@ -69,6 +69,7 @@ export default function Login() {
             <FormLabel>Email address</FormLabel>
             <Input
               type="email"
+              id="email"
               placeholder="Enter email..."
               outline={"1px solid gray"}
               onChange={(e) => setEmail(e.target.value)}
@@ -78,6 +79,7 @@ export default function Login() {
             <FormLabel>Password</FormLabel>
             <Input
               type="password"
+              id="password"
               placeholder="Enter password..."
               outline={"1px solid gray"}
               onChange={(e) => setPassword(e.target.value)}
