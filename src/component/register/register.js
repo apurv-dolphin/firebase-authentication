@@ -26,9 +26,8 @@ export default function Register() {
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
 
-  console.log("__demo", firstname, lastname, contactno);
 
-  const { signUp } = useUserAuth();
+  const { signUp, createUser } = useUserAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -36,6 +35,7 @@ export default function Register() {
     setError("");
     try {
       await signUp(email, password);
+      await createUser(firstname, lastname, email, contactno, password);
       navigate("/login");
     } catch (err) {
       setError(err.message);
