@@ -1,5 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import Blog from "./component/blog/Blog";
+import UserDetails from "./component/details/UserDetails";
 import ForgotPassword from "./component/forgotpassword/ForgotPassword.js";
 import Home from "./component/home/Home";
 import Login from "./component/login/Login";
@@ -14,10 +16,12 @@ function App() {
         <UserAuthContextProvider>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/details" element={<UserDetails />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="*" element={<Nomatch />}/>
+            <Route path="*" element={<Nomatch />} />
           </Routes>
         </UserAuthContextProvider>
       </BrowserRouter>
