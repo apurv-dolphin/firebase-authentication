@@ -1,6 +1,16 @@
+import {
+  Table,
+  TableCaption,
+  TableContainer,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
+} from "@chakra-ui/react";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
-import { Table, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import DevloperUpdateService from "../../context/DevloperUpdateService";
 
 const TaskList = ({ getTaskId }) => {
@@ -19,33 +29,34 @@ const TaskList = ({ getTaskId }) => {
     await DevloperUpdateService.deleteTask(id);
     getRecord();
   };
-  
+
   return (
-    <>
+    <div className="task-table">
       <div className="mb-2">
         <Button variant="dark edit" onClick={getRecord}>
           Refresh List
         </Button>
       </div>
-      <Table striped bordered hover size="sm">
-        <thead>
-          <tr>
-            <th>No .</th>
-            <th>Date</th>
-            <th>Task Title</th>
-            <th>Task Description</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tasks.map((doc, index) => {
-            return (
-              <tr key={doc.id}>
-                <td>{index + 1}</td>
-                <td>{moment().format("DD/MM/YYYY")}</td>
-                <td>{doc.title}</td>
-                <td>{doc.description}</td>
-                <td>
+      <TableContainer style={{border : "2px solid #e3e3e3"}}>
+        <Table variant="striped" colorScheme="teal">
+          <TableCaption>Task Details Table</TableCaption>
+          <Thead>
+            <Tr>
+              <Th>No .</Th>
+              <Th>Date</Th>
+              <Th>Task Title</Th>
+              <Th>Task Description</Th>
+              <Th>Action</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {tasks.map((doc, index) => (
+              <Tr key={doc.id}>
+                <Td>{index + 1}</Td>
+                <Td>{moment().format("DD/MM/YYYY")}</Td>
+                <Td>{doc.title}</Td>
+                <Td>{doc.description}</Td>
+                <Td>
                   <Button
                     variant="secondary"
                     className="edit"
@@ -61,13 +72,13 @@ const TaskList = ({ getTaskId }) => {
                   >
                     Delete
                   </Button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table>
-    </>
+                </Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </TableContainer>
+    </div>
   );
 };
 

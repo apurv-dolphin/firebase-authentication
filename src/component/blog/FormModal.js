@@ -23,7 +23,7 @@ export default function FormModal() {
   return (
     <>
       <Button onClick={onOpen}>Form Modal</Button>
-      <Button ml={4} ref={finalRef}>
+      <Button m={2} ref={finalRef}>
         I'll receive focus on close
       </Button>
       <Modal

@@ -43,7 +43,7 @@ export default function BackdropModal() {
         Use Overlay one
       </Button>
       <Button
-        ml="4"
+      m={2}
         onClick={() => {
           setOverlay(<OverlayTwo />);
           onOpen();

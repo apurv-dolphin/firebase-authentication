@@ -62,7 +62,7 @@ const AddTask = ({ id, setTaskId }) => {
       setFlag(true);
       editHandler();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
   return (
     <>
@@ -78,9 +78,9 @@ const AddTask = ({ id, setTaskId }) => {
         )}
 
         <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3" controlId="formBookTitle">
+          <Form.Group className="mb-3" controlId="formTaskTitle">
             <InputGroup>
-              <InputGroup.Text id="formBookTitle">Title</InputGroup.Text>
+              <InputGroup.Text id="formTaskTitle">Title</InputGroup.Text>
               <Form.Control
                 type="text"
                 placeholder="Task Title"
@@ -90,9 +90,9 @@ const AddTask = ({ id, setTaskId }) => {
             </InputGroup>
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBookDescription">
+          <Form.Group className="mb-3" controlId="formTaskDescription">
             <InputGroup>
-              <InputGroup.Text id="formBookDescription">
+              <InputGroup.Text id="formTaskDescription">
                 Description
               </InputGroup.Text>
               <Form.Control

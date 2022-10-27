@@ -4,8 +4,5 @@ import { useUserAuth } from "./context/UserAuthContext";
 
 export const ProtectedRouter = () => {
   const { user } = useUserAuth();
-
-  ;
-
-  return user === undefined ?   <Navigate to="/login" /> : <Outlet />;
+  return !user ? <Navigate to="/login" /> : <Outlet />;
 };
