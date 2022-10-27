@@ -40,7 +40,7 @@ export function UserAuthContextProvider({ children }) {
   }
   function resetPassword(email) {
     return sendPasswordResetEmail(auth, email);
-  } 
+  }
   function facebookSignIn() {
     const facebookAuthProvider = new FacebookAuthProvider();
     return signInWithPopup(auth, facebookAuthProvider);

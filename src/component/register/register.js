@@ -12,6 +12,7 @@ import {
   InputLeftAddon,
   InputRightElement,
 } from "@chakra-ui/react";
+import { FiEyeOff, FiEye } from "react-icons/fi";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserAuth } from "../../context/UserAuthContext";
@@ -25,7 +26,6 @@ export default function Register() {
   const [error, setError] = useState("");
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
-
 
   const { signUp, createUser } = useUserAuth();
   const navigate = useNavigate();
@@ -111,7 +111,7 @@ export default function Register() {
               />
               <InputRightElement width="4.5rem">
                 <Button h="1.75rem" size="sm" onClick={handleClick}>
-                  {show ? "Hide" : "Show"}
+                  {show ? <FiEyeOff /> : <FiEye />}
                 </Button>
               </InputRightElement>
             </InputGroup>

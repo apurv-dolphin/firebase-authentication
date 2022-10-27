@@ -44,3 +44,13 @@
   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI3dJDJBk58LGWdkdeYqNwraZgUx2uebvBWw&usqp=CAU");
   box-shadow: 0px 3px 34px 10px #b8eeff;
 }
+
+@media screen and (max-width: 786px) {
+  .HomePage {
+    margin: 150px 4px 0px 4px;
+    border: 1px solid gray;
+    padding: 30px;
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI3dJDJBk58LGWdkdeYqNwraZgUx2uebvBWw&usqp=CAU);
+    box-shadow: 0px 3px 34px 10px #b8eeff;
+  }
+}

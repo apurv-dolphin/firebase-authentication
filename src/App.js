@@ -8,6 +8,9 @@ import Login from "./component/login/Login";
 import Nomatch from "./component/nomatch/Nomatch";
 import Register from "./component/register/register";
 import { UserAuthContextProvider } from "./context/UserAuthContext";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { ProtectedRouter } from "./ProtectedRouter";
+import TaskPage from "./component/Task/TaskPage";
 
 function App() {
   return (
@@ -15,9 +18,12 @@ function App() {
       <BrowserRouter>
         <UserAuthContextProvider>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/details" element={<UserDetails />} />
+            <Route element={<ProtectedRouter />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/details" element={<UserDetails />} />
+              <Route path="/task" element={<TaskPage />}/>
+            </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />

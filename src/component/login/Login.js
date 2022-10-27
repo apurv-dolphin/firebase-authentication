@@ -8,8 +8,11 @@ import {
   FormLabel,
   Heading,
   Input,
+  InputGroup,
+  InputRightElement,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { FiEyeOff, FiEye } from "react-icons/fi";
 import GoogleButton from "react-google-button";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserAuth } from "../../context/UserAuthContext";
@@ -19,6 +22,9 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [show, setShow] = React.useState(false);
+  const handleClick = () => setShow(!show);
+
   const { logIn, googleSignIn, facebookSignIn } = useUserAuth();
   const navigate = useNavigate();
 
@@ -52,6 +58,7 @@ export default function Login() {
       console.log(error.message);
     }
   };
+
   return (
     <div className="main-form">
       <div className="inner-form">
@@ -77,13 +84,21 @@ export default function Login() {
           </Box>
           <Box mb={2}>
             <FormLabel>Password</FormLabel>
-            <Input
-              type="password"
-              id="password"
-              placeholder="Enter password..."
-              outline={"1px solid gray"}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <InputGroup size="md">
+              <Input
+                pr="4.5rem"
+                type={show ? "text" : "password"}
+                id="password"
+                placeholder="Enter password..."
+                outline={"1px solid gray"}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <InputRightElement width="4.5rem">
+                <Button h="1.75rem" size="sm" onClick={handleClick}>
+                  {show ? <FiEyeOff /> : <FiEye />}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
           </Box>
 
           <Box>

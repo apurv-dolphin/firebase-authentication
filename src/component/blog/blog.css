@@ -1,0 +1,19 @@
+.form-modal {
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+  margin: 25px;
+}
+
+.normal-modal {
+  display: flex;
+  align-items: baseline;
+  margin: 25px;
+  margin-left: 52px;
+}
+
+.all-sizemodal {
+  display: flex;
+  align-items: baseline;
+  margin: 50px;
+}

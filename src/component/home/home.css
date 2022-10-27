@@ -1,0 +1,36 @@
+.scroll-btn {
+  position: fixed;
+  bottom: 50px;
+  width: 50px;
+  height: 50px;
+  right: 50px;
+  border: 1px solid black !important;
+  background-color: #195155 !important;
+}
+
+.seticon {
+  color: #00f2ff;
+  font-size: 50px;
+  margin-top: -11px;
+}
+
+.heading {
+  display: flex;
+  font-size: 28px;
+  text-align: left;
+  align-items: center;
+}
+
+.List {
+  text-align: left;
+}
+
+.label {
+  padding: 4px;
+  font-family: Arial;
+}
+
+.other {
+  color: black;
+  margin-right: 10px;
+}
