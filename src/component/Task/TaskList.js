@@ -8,7 +8,6 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import DevloperUpdateService from "../../context/DevloperUpdateService";
@@ -43,7 +42,6 @@ const TaskList = ({ getTaskId }) => {
           <Thead>
             <Tr>
               <Th>No .</Th>
-              <Th>Date</Th>
               <Th>Task Title</Th>
               <Th>Task Description</Th>
               <Th>Action</Th>
@@ -53,7 +51,6 @@ const TaskList = ({ getTaskId }) => {
             {tasks.map((doc, index) => (
               <Tr key={doc.id}>
                 <Td>{index + 1}</Td>
-                <Td>{moment().format("DD/MM/YYYY")}</Td>
                 <Td>{doc.title}</Td>
                 <Td>{doc.description}</Td>
                 <Td>

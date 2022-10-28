@@ -16,8 +16,8 @@ class DevloperUpdateService {
   };
 
   updateTask = (id, updatedTask) => {
-    const bookDoc = doc(db, "Daily-updates", id);
-    return updateDoc(bookDoc, updatedTask);
+    const updateTaskDoc = doc(db, "Daily-updates", id);
+    return updateDoc(updateTaskDoc, updatedTask);
   };
 
   deleteTask = (id) => {
