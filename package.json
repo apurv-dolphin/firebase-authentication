@@ -29,6 +29,7 @@
     "react-dom": "^18.2.0",
     "react-google-button": "^0.7.2",
     "react-icons": "^4.6.0",
+    "react-loader-spinner": "^5.3.4",
     "react-loading-skeleton": "^3.1.0",
     "react-router-dom": "^6.4.1",
     "react-scripts": "5.0.1",

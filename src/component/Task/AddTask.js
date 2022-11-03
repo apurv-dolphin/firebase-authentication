@@ -3,11 +3,12 @@ import { Form, Alert, InputGroup, Button } from "react-bootstrap";
 import DevloperUpdateService from "../../context/DevloperUpdateService";
 import "./task.css";
 
-const AddTask = ({ id, setTaskId }) => {
+const AddTask = ({ id, setTaskId , getRecord }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [flag, setFlag] = useState(false);
   const [message, setMessage] = useState({ error: false, msg: "" });
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,6 +37,7 @@ const AddTask = ({ id, setTaskId }) => {
 
     setTitle("");
     setDescription("");
+    getRecord();
   };
 
   const handleClose = () => {

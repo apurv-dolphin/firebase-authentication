@@ -8,42 +8,30 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import moment from "moment";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import DevloperUpdateService from "../../context/DevloperUpdateService";
 
-const TaskList = ({ getTaskId }) => {
-  const [tasks, setTasks] = useState([]);
-
-  useEffect(() => {
-    getRecord();
-  }, []);
-
-  const getRecord = async () => {
-    const data = await DevloperUpdateService.getAllTask();
-    setTasks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  };
+const TaskList = ({ getTaskId, getRecord, tasks }) => {
 
   const deleteHandler = async (id) => {
     await DevloperUpdateService.deleteTask(id);
     getRecord();
   };
 
+  useEffect(() => {
+    getRecord();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tasks]);
+
   return (
     <div className="task-table">
-      <div className="mb-2">
-        <Button variant="dark edit" onClick={getRecord}>
-          Refresh List
-        </Button>
-      </div>
       <TableContainer style={{border : "2px solid #e3e3e3"}}>
         <Table variant="striped" colorScheme="teal">
           <TableCaption>Task Details Table</TableCaption>
           <Thead>
             <Tr>
               <Th>No .</Th>
-              <Th>Date</Th>
               <Th>Task Title</Th>
               <Th>Task Description</Th>
               <Th>Action</Th>
@@ -53,7 +41,6 @@ const TaskList = ({ getTaskId }) => {
             {tasks.map((doc, index) => (
               <Tr key={doc.id}>
                 <Td>{index + 1}</Td>
-                <Td>{moment().format("DD/MM/YYYY")}</Td>
                 <Td>{doc.title}</Td>
                 <Td>{doc.description}</Td>
                 <Td>

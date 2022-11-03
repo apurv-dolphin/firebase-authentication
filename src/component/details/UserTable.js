@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
   Button,
-  Spinner,
   Table,
   TableCaption,
   TableContainer,
@@ -12,8 +11,11 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import { useUserAuth } from "../../context/UserAuthContext";
+import { Dna } from "react-loader-spinner";
+import "./details.css";
 
 export const ADMIN = "apurv.dolphinwebsolution@gmail.com";
+
 
 export default function UserTable() {
   const { user, data, deleteUser } = useUserAuth();
@@ -22,6 +24,7 @@ export default function UserTable() {
   const handleDelete = async (id) => {
     await deleteUser(id);
   };
+
 
   useEffect(() => {
     if (user.email === ADMIN) {
@@ -52,7 +55,7 @@ export default function UserTable() {
                   <Td>{newdata.email}</Td>
                   <Td>{newdata.contactno}</Td>
                   <Td>
-                    <Button onClick={() => handleDelete(newdata.id)}>
+                    <Button onClick={() => handleDelete(newdata.id)} bg="red" color="#fff">
                       Delete user
                     </Button>
                   </Td>
@@ -62,16 +65,14 @@ export default function UserTable() {
           </Table>
         </TableContainer>
       ) : (
-        <div>
-          <div style={{ fontSize: "30px" }}>
-           .....
-          </div>
-          <Spinner
-            thickness="4px"
-            speed="0.99s"
-            emptyColor="gray.200"
-            color="blue.500"
-            size="xl"
+        <div className="loader">
+          <Dna
+            visible={true}
+            height="100"
+            width="100"
+            ariaLabel="dna-loading"
+            wrapperStyle={{}}
+            wrapperClass="dna-wrapper"
           />
         </div>
       )}

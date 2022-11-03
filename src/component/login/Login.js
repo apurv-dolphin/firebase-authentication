@@ -28,6 +28,7 @@ export default function Login() {
   const { logIn, googleSignIn, facebookSignIn } = useUserAuth();
   const navigate = useNavigate();
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");

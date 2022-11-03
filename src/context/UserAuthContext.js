@@ -70,13 +70,10 @@ export function UserAuthContextProvider({ children }) {
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
-      setUser(currentuser);
+    onAuthStateChanged(auth, (currentuser) => {
+      if (currentuser) setUser(currentuser);
+      else setUser(null);
     });
-
-    return () => {
-      unsubscribe();
-    };
   }, []);
 
   return (
