@@ -18,7 +18,8 @@ const TaskList = ({ getTaskId, getRecord, tasks }) => {
     await DevloperUpdateService.deleteTask(id);
     getRecord();
   };
-
+     
+  console.log(tasks);
   useEffect(() => {
     getRecord();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -38,7 +39,7 @@ const TaskList = ({ getTaskId, getRecord, tasks }) => {
             </Tr>
           </Thead>
           <Tbody>
-            {tasks.map((doc, index) => (
+            { tasks && tasks.map((doc, index) => (
               <Tr key={doc.id}>
                 <Td>{index + 1}</Td>
                 <Td>{doc.title}</Td>

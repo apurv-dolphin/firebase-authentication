@@ -45,6 +45,10 @@
   box-shadow: 0px 3px 34px 10px #b8eeff;
 }
 
+.css-cv75rs :hover {
+  background: #9cc7ff !important;
+}
+
 @media screen and (max-width: 786px) {
   .HomePage {
     margin: 150px 4px 0px 4px;

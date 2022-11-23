@@ -4,15 +4,26 @@ import AddTask from "./AddTask";
 import TaskList from "./TaskList";
 import "./task.css";
 import NavBar from "../navbar/NavBar";
-import DevloperUpdateService from "../../context/DevloperUpdateService";
+import { useUserAuth } from "../../context/UserAuthContext";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "../../Firebase";
 
 export default function TaskPage() {
+  const devloperDailyUpdateRef = collection(db, "Daily-updates");
+
+  const { user } = useUserAuth();
+
   const [tasks, setTasks] = useState([]);
   const [taskId, setTaskId] = useState("");
 
   const getRecord = async () => {
-    const data = await DevloperUpdateService.getAllTask();
-    setTasks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    const q = query(devloperDailyUpdateRef, where("uid", "==", user.uid || ""));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      console.log(doc.id, " => ", doc.data());
+      setTasks(doc.data());
+    });
   };
 
   const getTaskIdHandler = (id) => {
@@ -21,8 +32,9 @@ export default function TaskPage() {
   };
   useEffect(() => {
     getRecord();
-  }, [tasks]);
-  
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <NavBar />

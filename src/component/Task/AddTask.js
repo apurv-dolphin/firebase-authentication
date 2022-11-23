@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Form, Alert, InputGroup, Button } from "react-bootstrap";
 import DevloperUpdateService from "../../context/DevloperUpdateService";
+import { useUserAuth } from "../../context/UserAuthContext";
 import "./task.css";
 
-const AddTask = ({ id, setTaskId , getRecord }) => {
+const AddTask = ({ id, setTaskId, getRecord }) => {
+  const { user } = useUserAuth();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [flag, setFlag] = useState(false);
   const [message, setMessage] = useState({ error: false, msg: "" });
 
+  const uid = user.uid;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,6 +21,7 @@ const AddTask = ({ id, setTaskId , getRecord }) => {
       return;
     }
     const newTask = {
+      uid,
       title,
       description,
     };
