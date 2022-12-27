@@ -16,14 +16,19 @@ export default function TaskPage() {
   const [tasks, setTasks] = useState([]);
   const [taskId, setTaskId] = useState("");
 
+  // console.log(tasks);
+
   const getRecord = async () => {
+    const temp = [];
     const q = query(devloperDailyUpdateRef, where("uid", "==", user.uid || ""));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data());
-      setTasks(doc.data());
+      // console.log(doc.id, " => ", doc.data());
+      const data = Object.assign(doc.data(), { id: doc.id });
+      temp.push(data);
     });
+    setTasks(temp);
   };
 
   const getTaskIdHandler = (id) => {
