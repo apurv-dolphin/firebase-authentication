@@ -7,6 +7,7 @@ import NavBar from "../navbar/NavBar";
 import { useUserAuth } from "../../context/UserAuthContext";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../Firebase";
+import Footer from "../footer/Footer";
 
 export default function TaskPage() {
   const devloperDailyUpdateRef = collection(db, "Daily-updates");
@@ -54,6 +55,7 @@ export default function TaskPage() {
           getRecord={getRecord}
         />
       </div>
+      <Footer />
     </>
   );
 }

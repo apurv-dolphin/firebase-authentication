@@ -2,6 +2,7 @@ import { Heading } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserAuth } from "../../context/UserAuthContext";
+import Footer from "../footer/Footer";
 import NavBar from "../navbar/NavBar";
 import UserTable from "./UserTable";
 
@@ -25,6 +26,7 @@ export default function UserDetails() {
         <h2>{user && user.email}</h2>
         <UserTable />
       </div>
+      <Footer />
     </div>
   );
 }
