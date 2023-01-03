@@ -1,7 +1,6 @@
 import { db } from "../Firebase";
 import {
   collection,
-  getDocs,
   getDoc,
   addDoc,
   updateDoc,
@@ -9,7 +8,8 @@ import {
   doc,
 } from "firebase/firestore";
 
-const devloperDailyUpdateRef = collection(db , "Daily-updates");
+const devloperDailyUpdateRef = collection(db, "Daily-updates");
+
 class DevloperUpdateService {
   addTask = (newTask) => {
     return addDoc(devloperDailyUpdateRef, newTask);
@@ -25,10 +25,6 @@ class DevloperUpdateService {
     return deleteDoc(taskDoc);
   };
 
-  getAllTask = () => {
-    return getDocs(devloperDailyUpdateRef);
-  };
-
   getRecord = (id) => {
     const taskDoc = doc(db, "Daily-updates", id);
     return getDoc(taskDoc);
@@ -36,5 +32,3 @@ class DevloperUpdateService {
 }
 
 export default new DevloperUpdateService();
-
-

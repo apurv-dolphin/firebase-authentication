@@ -12,6 +12,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
+import Footer from "../footer/Footer";
 import NavBar from "../navbar/NavBar";
 import AllSizeModal from "./AllSizeModal";
 import BackdropModal from "./BackdropModal";
@@ -65,7 +66,7 @@ export default function Blog() {
       <div className="form-modal">
         <FormLabel>Form modal Example :-</FormLabel>
         <div>
-        <FormModal />
+          <FormModal />
         </div>
       </div>
       <div className="all-sizemodal">
@@ -77,9 +78,10 @@ export default function Blog() {
       <div className="form-modal">
         <FormLabel>Backdrop modal Example :-</FormLabel>
         <div>
-        <BackdropModal />
+          <BackdropModal />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

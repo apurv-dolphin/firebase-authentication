@@ -45,6 +45,21 @@
   box-shadow: 0px 3px 34px 10px #b8eeff;
 }
 
+.css-cv75rs :hover {
+  background: #9cc7ff !important;
+}
+
+.footer {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #1f5156;
+  color: white;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
 @media screen and (max-width: 786px) {
   .HomePage {
     margin: 150px 4px 0px 4px;
