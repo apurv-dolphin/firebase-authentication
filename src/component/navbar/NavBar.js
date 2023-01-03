@@ -1,3 +1,4 @@
+import { deleteUser } from "firebase/auth";
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useUserAuth } from "../../context/UserAuthContext";
@@ -6,11 +7,27 @@ import "./navbar.css";
 export default function NavBar() {
   const [click, setClick] = useState(false);
 
-  const { logOut } = useUserAuth();
+  const { logOut, user } = useUserAuth();
   const navigate = useNavigate();
+
 
   const handleClick = () => setClick(!click);
   const Close = () => setClick(false);
+
+  const deletePermenat = async () => {
+    try {
+      // eslint-disable-next-line no-restricted-globals
+      let text = confirm("Are you sure you want to delete account?");
+      if (text === true) {
+        await deleteUser(user);
+        navigate("/login");
+      }
+    } catch (error) {
+      if (error.code === 'auth/requires-recent-login') {
+        alert("Require user to sign in again.");
+      }
+    }
+  }
 
   const handleLogout = async () => {
     try {
@@ -78,6 +95,15 @@ export default function NavBar() {
                 onClick={click ? handleLogout : null}
               >
                 LogOut
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                activeclassname="active"
+                className="nav-links"
+                onClick={deletePermenat}
+              >
+                Delete Account
               </NavLink>
             </li>
           </ul>

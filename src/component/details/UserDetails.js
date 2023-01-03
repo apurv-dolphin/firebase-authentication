@@ -10,6 +10,7 @@ export default function UserDetails() {
   const { user, getUsers } = useUserAuth();
   const navigate = useNavigate();
 
+
   useEffect(() => {
     if (!user) {
       navigate("/login");

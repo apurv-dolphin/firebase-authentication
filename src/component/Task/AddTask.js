@@ -8,8 +8,11 @@ const AddTask = ({ id, setTaskId, getRecord }) => {
   const { user } = useUserAuth();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const currentDate = new Date();
   const [flag, setFlag] = useState(false);
   const [message, setMessage] = useState({ error: false, msg: "" });
+
+  const date = `${currentDate.getDate()}-${(currentDate.getMonth() + 1)}-${currentDate.getFullYear()}`;
 
   const uid = user.uid;
 
@@ -22,6 +25,7 @@ const AddTask = ({ id, setTaskId, getRecord }) => {
     }
     const newTask = {
       uid,
+      date,
       title,
       description,
     };
@@ -68,6 +72,7 @@ const AddTask = ({ id, setTaskId, getRecord }) => {
       setFlag(true);
       editHandler();
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
   return (
@@ -92,6 +97,16 @@ const AddTask = ({ id, setTaskId, getRecord }) => {
                 placeholder="Task Title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
+              />
+            </InputGroup>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formTaskDate">
+            <InputGroup>
+              <InputGroup.Text id="formTaskDate">Date</InputGroup.Text>
+              <Form.Control
+                type="text"
+                value={date}
+                readOnly
               />
             </InputGroup>
           </Form.Group>

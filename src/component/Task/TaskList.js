@@ -33,6 +33,7 @@ const TaskList = ({ getTaskId, getRecord, tasks }) => {
           <Thead>
             <Tr>
               <Th>No .</Th>
+              <Th>Date</Th>
               <Th>Task Title</Th>
               <Th>Task Description</Th>
               <Th>Action</Th>
@@ -42,6 +43,7 @@ const TaskList = ({ getTaskId, getRecord, tasks }) => {
             {data?.map((doc, index) => (
               <Tr key={doc.id}>
                 <Td>{index + 1}</Td>
+                <Td>{doc.date}</Td>
                 <Td>{doc.title}</Td>
                 <Td>{doc.description}</Td>
                 <Td>
