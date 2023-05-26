@@ -1,15 +1,15 @@
 import { deleteUser } from "firebase/auth";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useUserAuth } from "../../context/UserAuthContext";
 import "./navbar.css";
 
 export default function NavBar() {
+  const bodyRef = useRef(null);
   const [click, setClick] = useState(false);
 
   const { logOut, user } = useUserAuth();
   const navigate = useNavigate();
-
 
   const handleClick = () => setClick(!click);
   const Close = () => setClick(false);
@@ -23,11 +23,11 @@ export default function NavBar() {
         navigate("/login");
       }
     } catch (error) {
-      if (error.code === 'auth/requires-recent-login') {
+      if (error.code === "auth/requires-recent-login") {
         alert("Require user to sign in again.");
       }
     }
-  }
+  };
 
   const handleLogout = async () => {
     try {
@@ -38,6 +38,27 @@ export default function NavBar() {
     }
   };
 
+  useEffect(() => {
+    const handleBodyClick = (event) => {
+      if (bodyRef.current && !bodyRef.current.contains(event.target)) {
+        setClick(false);
+      }
+    };
+
+    if (click) {
+      document.addEventListener("click", handleBodyClick);
+      document.body.classList.add("disable-scroll");
+    } else {
+      document.removeEventListener("click", handleBodyClick);
+      document.body.classList.remove("disable-scroll");
+    }
+
+    return () => {
+      document.removeEventListener("click", handleBodyClick);
+      document.body.classList.remove("disable-scroll");
+    };
+  }, [click]);
+
   return (
     <div>
       <div className={click ? "main-container" : ""} onClick={() => Close()} />
@@ -46,7 +67,7 @@ export default function NavBar() {
           <div className="nav-logo">
             <i className="fa fa-trophy"></i>
           </div>
-          <ul className={click ? "nav-menu active" : "nav-menu"}>
+          <ul ref={bodyRef} className={click ? "nav-menu active" : "nav-menu"}>
             <li className="nav-item">
               <NavLink
                 to="/"
@@ -92,7 +113,7 @@ export default function NavBar() {
                 to="/login"
                 activeclassname="active"
                 className="nav-links"
-                onClick={click ? handleLogout : null}
+                onClick={handleLogout}
               >
                 LogOut
               </NavLink>
